@@ -38,5 +38,5 @@ async def gpt(message: types.Message):
   await message.reply(response.choices[0].text)
 
 
-if __name__ == "main":
+if __name__ == "__main__":
   executor.start_polling(dp)
