@@ -1,16 +1,23 @@
-import os
 import openai
+import json
 from aiogram import Bot, Dispatcher, executor, types
-from keep_alive import keep_alive
-from dotenv import load_dotenv
 
-load_dotenv()
-bot = Bot(token = os.getenv('7237760891:AAFlnviTCBVQ73mvNViWXBNmIAY3YQQhvAc'))
+
+def load_api_key(secrets_file="secrets.json"):
+  with open(secrets_file) as f:
+    secrets = json.load(f)
+  return secrets["OPENAI_API_KEY"]
+
+api_key = load_api_key()
+openai.api_key = api_key
+"""from keep_alive import keep_alive"""
+TOKEN = '7237760891:AAFlnviTCBVQ73mvNViWXBNmIAY3YQQhvAc'
+bot = Bot(token = TOKEN)
 dp = Dispatcher(bot)
 
-openai.api_key = os.getenv('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')
 
-keep_alive()
+
+
 
 @dp.message_handler(commands = ['start', 'help'])
 async def welcome(message: types.Message):
@@ -20,7 +27,7 @@ async def welcome(message: types.Message):
 @dp.message_handler()
 async def gpt(message: types.Message):
   response = openai.Completion.create(
-    model="text-davinci-003",
+    model="gpt-3.5-turbo-instruct",
     prompt=message.text,
     temperature=0.5,
     max_tokens=1024,
@@ -31,5 +38,5 @@ async def gpt(message: types.Message):
   await message.reply(response.choices[0].text)
 
 
-if __name__ == "__main__":
+if __name__ == "main":
   executor.start_polling(dp)
