@@ -2,11 +2,13 @@ import os
 import openai
 from aiogram import Bot, Dispatcher, executor, types
 from keep_alive import keep_alive
+from dotenv import load_dotenv
 
-bot = Bot(token = os.getenv("sk-None-Hdlv1u9BDoGr1V1RSwfaT3BlbkFJtZ4HbgtzrpBefHhcMxt1"))
+load_dotenv()
+bot = Bot(token = os.getenv('7237760891:AAFlnviTCBVQ73mvNViWXBNmIAY3YQQhvAc'))
 dp = Dispatcher(bot)
 
-openai.api_key = os.getenv(":-")
+openai.api_key = os.getenv('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')
 
 keep_alive()
 
