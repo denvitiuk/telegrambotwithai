@@ -11,7 +11,7 @@ def load_api_key(secrets_file="secrets.json"):
 api_key = load_api_key()
 openai.api_key = api_key
 """from keep_alive import keep_alive"""
-TOKEN = '7237760891:AAFlnviTCBVQ73mvNViWXBNmIAY3YQQhvAc'
+TOKEN = 'token'
 bot = Bot(token = TOKEN)
 dp = Dispatcher(bot)
 
